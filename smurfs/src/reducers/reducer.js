@@ -19,7 +19,7 @@ const reducer = (state = initialState, action) => {
     case FETCH_SUCCESS:
       return {
         ...state, 
-        isFetching: false,
+        isFetching: true,
         error: '',
         smurfs: action.payload,
         updated: false
