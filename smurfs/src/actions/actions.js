@@ -29,3 +29,33 @@ export const fetchSmurfs = () => dispatch => {
         payload: error.response
     }))
 };
+
+export const addSmurf = (name, age, height) => dispatch => {
+  dispatch({ type: ADD_START})
+    axios
+      .post('http://localhost:3333/smurfs', {name, age, height})
+      .then(response => dispatch({
+        type: ADD_SUCCESS,
+        payload: response.data
+      }))
+      .catch(error => dispatch({
+        type: ADD_FAILURE,
+        payload: error.response
+      }))
+}
+
+export const removeSmurf = (id) => dispatch => {
+  dispatch({
+    type: REMOVE_ITEM
+  })
+    axios
+      .delete('http://localhost:3333/smurfs/${id}')
+      .then(response => dispatch({
+          type: REMOVE_SUCCESS,
+          payload: response.data
+      }))
+      .catch(error => dispatch ({
+        type: REMOVE_SUCCESS,
+        payload: error.response
+      }))
+};
